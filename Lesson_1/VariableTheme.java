@@ -44,7 +44,7 @@ public class VariableTheme { //здравия желаю
         System.out.println("\nNo_5. Перестановка значений переменных.");
         int num1 = 2, num2 = 5, num3;
         System.out.println("Через промежуточную переменную: num1 = " + num1 +
-                 " num2 = " + num2);
+                " num2 = " + num2);
         num3 = num1;
         num1 = num2;
         num2 = num3;
