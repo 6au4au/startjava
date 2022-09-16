@@ -99,7 +99,7 @@ public class VariableTheme { //здравия желаю
         int hours = inputSec / 3600;
         int minutes = (inputSec % 3600) / 60;
         int seconds = ((inputSec % 3600) / 60) % 60;
-        System.out.println("Дано секунд: " + inputSec + "\nЧасов: " + hours 
-            + "\nМинут: " + minutes + "\nСекунд: " + seconds);
+        System.out.println("Дано секунд: " + inputSec + "\nЧасов: " + hours + 
+                "\nМинут: " + minutes + "\nСекунд: " + seconds);
     }
 }
