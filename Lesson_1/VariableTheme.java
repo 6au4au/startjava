@@ -43,8 +43,7 @@ public class VariableTheme { //здравия желаю
 
         System.out.println("\nNo_5. Перестановка значений переменных.");
         int num1 = 2, num2 = 5, num3;
-        System.out.println("Через промежуточную переменную: num1 = " + num1 +
-                " num2 = " + num2);
+        System.out.println("Через промежуточную переменную: num1 = " + num1 + " num2 = " + num2);
         num3 = num1;
         num1 = num2;
         num2 = num3;
@@ -63,44 +62,42 @@ public class VariableTheme { //здравия желаю
 
         System.out.println("\nNo_6. Вывод символов и их кодов.");
         char ch1 = '#', ch2 = '&', ch3 = '@', ch4 = '^', ch5 = '_';
-        System.out.println((int)ch1 + " " + ch1 + "\n" +
-                (int)ch2 + " " + ch2 + "\n" + (int)ch3 + 
-                " " + ch3 + "\n" + (int)ch4 + " " + 
-                ch4 + "\n" + (int)ch5 + " " + ch5);
+        System.out.println((int) ch1 + " - " + ch1 + "\n" +
+                (int) ch2 + " - " + ch2 + "\n" + (int) ch3 + 
+                " - " + ch3 + "\n" + (int) ch4 + " - " + 
+                ch4 + "\n" + (int) ch5 + " - " + ch5);
 
         System.out.println("\nNo_7. Отображение сотен, десятков и единиц числа."); 
         int num = 123;
         System.out.println("В числе " + num + ":" + "\nСотен: " + (num / 100)  +
                 "\nДесятков: " + ((num % 100) / 10) + "\nЕдиниц: " + (num % 10));
 
-        System.out.println("\nNo_8. Вывод на консоль АСКИ-арт Дюка."); 
+        System.out.println("\nNo_8. Вывод на консоль ASCII арт Дюка."); 
         char bckSlash = '\\', slash = '/';
         char bktLeft = '(', bktRight = ')';
         char unSc = '_', space = ' ';
         System.out.println("" + space + space + space + space + slash + bckSlash); 
-        System.out.println("" + space + space + space + slash +
-                space + space + bckSlash); 
-        System.out.println("" + space + space + slash + unSc + bktLeft +
-                space + bktRight + bckSlash); 
-        System.out.println("" + space + slash + space + space + space +
-                space + space + space + bckSlash); 
-        System.out.println("" + slash + unSc + unSc + unSc + unSc +
-                slash + bckSlash + unSc + unSc + bckSlash);
+        System.out.println("" + space + space + space + slash + space + space + bckSlash); 
+        System.out.println("" + space + space + slash + unSc + bktLeft + space + bktRight + 
+                bckSlash); 
+        System.out.println("" + space + slash + space + space + space + space + space +
+                space + bckSlash); 
+        System.out.println("" + slash + unSc + unSc + unSc + unSc + slash + bckSlash + unSc +
+                unSc + bckSlash);
 
         System.out.println("No_9. Произведение и сумма чисел.");
         num = 345; // используем локальную переменную из старой задачи
-        int hundreds = 100, dozens = 10;
-        int mult = (num / hundreds) * ((num / dozens) % dozens) * (num % dozens);
-        int sum = (num / hundreds) + ((num / dozens) % dozens) + (num % dozens);
-        System.out.println("Произведение цифр числа " + num + ": " + mult +
-                "\n Сумма цифр числа: " + num + ": " + sum);
+        int hundreds = num / 100;
+        int dozens = (num / 10) % 10;
+        int units = num % 10;
+        System.out.println("Произведение цифр числа " + num + ": " + (hundreds * dozens * units) +
+                "\n Сумма цифр числа: " + num + ": " + (hundreds + dozens + units));
 
         System.out.println("\nNo_10. Преобразование секунд.");
         int inputSec = 86399;
         int hours = inputSec / 3600;
         int minutes = (inputSec % 3600) / 60;
-        int seconds = ((inputSec % 3600) / 60) % 60;
-        System.out.println("Дано секунд: " + inputSec + "\nЧасов: " + hours + 
-                "\nМинут: " + minutes + "\nСекунд: " + seconds);
+        int seconds = inputSec % 60;
+        System.out.println(hours + ":" + minutes + ":" + seconds);
     }
 }
