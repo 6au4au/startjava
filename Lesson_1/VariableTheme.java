@@ -62,10 +62,9 @@ public class VariableTheme { //здравия желаю
 
         System.out.println("\nNo_6. Вывод символов и их кодов.");
         char ch1 = '#', ch2 = '&', ch3 = '@', ch4 = '^', ch5 = '_';
-        System.out.println((int) ch1 + " - " + ch1 + "\n" +
-                (int) ch2 + " - " + ch2 + "\n" + (int) ch3 + 
-                " - " + ch3 + "\n" + (int) ch4 + " - " + 
-                ch4 + "\n" + (int) ch5 + " - " + ch5);
+        System.out.println((int) ch1 + " - " + ch1 + "\n" + (int) ch2 + " - " + ch2 +
+                "\n" + (int) ch3 + " - " + ch3 + "\n" + (int) ch4 + " - " + ch4 + "\n" +
+                (int) ch5 + " - " + ch5);
 
         System.out.println("\nNo_7. Отображение сотен, десятков и единиц числа."); 
         int num = 123;
