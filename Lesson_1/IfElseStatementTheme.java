@@ -197,6 +197,7 @@ public class IfElseStatementTheme {
                 "100$" + " - " + $100cash + " шт. " +
                 "10$" + " - " + $10cash + " шт. " +
                 "1$" + " - " + $1cash + " шт. " + "\nХорошего дня");
+        requiredPay = 0;
         System.out.println("\nДобро пожаловать!\nВ наличии купюры номиналом" + "\n100$ 10$ 1$\n" + 
                 $100billLimit + " " + $10billLimit + " " + " " +$1billLimit);
     }
