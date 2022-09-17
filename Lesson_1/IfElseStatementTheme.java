@@ -159,7 +159,7 @@ public class IfElseStatementTheme {
         System.out.println("\n8. Расчет прибыли");
         int rent = 5000, eargins = 13000, primeCost = 9000;
         int totalIncome = (eargins - primeCost + rent) * 12;
-        if(totalIncome > 0) {
+        if (totalIncome > 0) {
             System.out.println("Прибыль за год: +" + totalIncome);
         } else if (totalIncome < 0) {
             System.out.println("Прибыль за год: " + totalIncome);
