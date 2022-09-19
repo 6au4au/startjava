@@ -44,7 +44,7 @@ public class IfElseStatementTheme {
         //Возьмем переменную из задания No2. p.s. Не усложнял логику намеренно.
         num1 = 282;
         if (num1 == 0) {
-            System.out.println("\n");
+            System.out.println("\nЧисло" + num1 + "равно нулю!\n");
         } else {
             if (num1 % 2 == 0) {
                 System.out.print("Число " + num1 + " четное ");
