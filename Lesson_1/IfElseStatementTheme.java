@@ -3,14 +3,14 @@ public class IfElseStatementTheme {
     public static void main(String[] args) {
         System.out.println("1. Перевод псевдокода на язык Java");
         int age = 22;
-        boolean gender = true; //1 муж; 0 жен.
+        boolean maleGender = true; //1 муж; 0 жен.
         double height = 1.86;
         if (age > 20) {
             System.out.println("Можете покупать алкоголь");
         } else {
             System.out.println("Алкоголь продается лицам исключительно старше 21 года");
         }
-        if (!gender) {
+        if (!maleGender) {
             System.out.println("Хватит бухать начни вязать");
         } else {
             System.out.println("Хватит бухать займись спортом");
@@ -97,17 +97,15 @@ public class IfElseStatementTheme {
          *они не выходят за тему примитивные типы данных.
          */
         System.out.println("Преобразование HEX в DEC завершено, код: " + (int) ch);
-        if ((int) ch >= 48 && (int) ch <= 57) {
-            System.out.println("Код " + (int) ch + " - " + "Является цифрой " + ch);
-        } else {
-            if ((int) ch >= 65 && (int) ch <= 90) {
-                System.out.println("Код " + (int) ch + ", соответствует большой литере - " + ch); 
-            } else if ((int) ch >= 97 && (int) ch <= 122 ) {
+        if (ch >= '0' && ch <= '9') {
+            System.out.println("Код " + ch + " - " + "Является цифрой " + ch);
+        } else if (ch >= 'A' && ch <= 'Z') {
+                System.out.println("Код " + ch + ", соответствует большой литере - " + ch); 
+            } else if ( ch >= 'a' && ch <= 'z' ) {
                 System.out.println("Код " + (int) ch + ", соответствует малой литере - " + ch); 
             } else {
                 System.out.println("Код " + (int) ch + ", - не является литерой либо цифрой, это символ " + ch);
             }
-        }
 
         System.out.println("\n6. Определение суммы вклада и начисленных банком %");
         int deposit = 300_000, depositDays = 365; //в depDays можно указать любое количество дней вклада.
