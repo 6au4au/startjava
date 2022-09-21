@@ -95,35 +95,110 @@ public class CyclesTheme {
             System.out.println("**********");
         }
         System.out.println("Треугольник");
-        int i = 1;
-        while(i <= 5) {
-            if (i == 1) {
+        int k = 1;
+        while(k <= 5) {
+            if (k == 1) {
                 System.out.println("#####");
-            } else if (i == 2) {
+            } else if (k == 2) {
                 System.out.println("####");
-            } else if (i == 3) {
+            } else if (k == 3) {
                 System.out.println("###");
-            } else if (i == 4) {
+            } else if (k == 4) {
                 System.out.println("##");
-            } else if (i == 5){
+            } else if (k == 5){
                 System.out.println("#");
             }
-            i++;
+            k++;
         }
         System.out.println("Второй треугольник");
-        i = 1;
+        k = 1;
         do {
-            if (i == 1 || i == 5) {
+            if (k == 1 || k == 5) {
                 System.out.println("$");
-            } else if (i == 2 || i == 4) {
+            } else if (k == 2 || k == 4) {
                 System.out.println("$$");
-            } else if (i == 3) {
+            } else if (k == 3) {
                 System.out.println("$$$");
             }
-            i++;
-        } while (i != 5);
+            k++;
+        } while (k != 5);
 
-        System.out.println("/n7. ");
+        System.out.println("\n7. Отображение ASCII-символов");
+        boolean tableReadines = false; 
+        for (char i = 1, j = 98; !tableReadines; i += 2, j += 2) {
+            //заменил управляющие символы андерскором '_' также. Лист: (bs,tab,cr)
+            //я заполню все пустые ячейки после маленьких букв.
+            if (i >= 47 && j >= 122) {
+            tableReadines = true;
+            } else if (i == 7 || i == 9 || i == 13) { //(bs,tab,cr)
+                System.out.printf("%2s %4s %n", '_', j);
+            } else if (j >= 'z' && i <= 47) {
+                System.out.printf("%2s %4s %n", i, '_');
+            } else if (i % 2 != 0 && j % 2 == 0) {
+                System.out.printf("%2s %4s %n", i, j);
+            }
+        }
+
+        System.out.println("\n8. Проверка является ли число палиндромом");
+        //используем старые наработки и старые переменные.
+        num = 1234321;
+        int localNum = num;
+        reversed = 0;
+        boolean endReverse = false;
+        while (!endReverse) {
+            int temp = localNum % 10;
+            reversed = reversed * 10 + temp;
+            localNum /= 10;
+            if (reversed >= num) {
+                endReverse = true;
+            }
+        }
+        if (num == reversed) {
+            System.out.println("Число" + " " + num + " - " + "Является палиндромом");
+        } else {
+            System.out.println("Число" + " " + num + " - " + "Не является палиндромом");
+        }
+
+        System.out.println("\n9. Определение, является ли число счастливым");
+        //старые переменные.
+        num = 123123;
+        localNum = num;
+        int i = 0, j = 0;
+        for (k = 0; k <= 6; k++) {
+            int temp = localNum % 10;
+            if (k < 3) {
+                i += temp;
+            } else {
+                j += temp;
+            }
+            localNum /= 10;
+        }
+        if (i == j) {
+            System.out.println("Число (" + num + ") - Является счастливым");
+        } else {
+            System.out.println("Число (" + num + ") - Не является счастливым");
+        }
+
+        System.out.println("10. Вывод таблицы умножения Пифагора");
+        System.out.println("\nТаблица Пифагора");
+        for(i = 1; i <= 9; i++) {
+            if ( i == 1) {
+                System.out.print(" " + "|");
+                for (k = 2; k <= 9; k++) {
+                    System.out.printf("%2d", k);
+                    System.out.print(" ");
+                }
+                System.out.println("\n-|-----------------------");
+                continue;
+            } else {
+                System.out.print(i + "|");
+                for (j = i, k = 2; k <= 9; k++, j++) {
+                    System.out.printf("%2d", k * i);
+                    System.out.print(" ");
+                }
+            }
+            System.out.println("");
+        }
     }   
 }
 /*
