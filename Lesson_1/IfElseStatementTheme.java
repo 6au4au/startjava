@@ -101,11 +101,11 @@ public class IfElseStatementTheme {
             System.out.println("Код " + ch + " - " + "Является цифрой " + ch);
         } else if (ch >= 'A' && ch <= 'Z') {
                 System.out.println("Код " + ch + ", соответствует большой литере - " + ch); 
-            } else if ( ch >= 'a' && ch <= 'z' ) {
+        } else if ( ch >= 'a' && ch <= 'z' ) {
                 System.out.println("Код " + (int) ch + ", соответствует малой литере - " + ch); 
-            } else {
+        } else {
                 System.out.println("Код " + (int) ch + ", - не является литерой либо цифрой, это символ " + ch);
-            }
+        }
 
         System.out.println("\n6. Определение суммы вклада и начисленных банком %");
         int deposit = 300_000, depositDays = 365; //в depDays можно указать любое количество дней вклада.
