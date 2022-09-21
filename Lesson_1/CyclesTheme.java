@@ -15,11 +15,8 @@ public class CyclesTheme {
             counter++;
         } while (counter != 21);
         System.out.println(counter);
-        System.out.println("Количество счетных чисел = " + evensNums + ", количество не счетных чисел = " + 
-            oddNums); //Ноль делится на все степени двойки, по канону это самое четное число, отдельно не вывел.
-
-
-
+        System.out.println("Количество счетных чисел = " + evensNums + ", количество не счетных чисел = " + oddNums); 
+        //Ноль делится на все степени двойки, по канону это самое четное число, отдельно не вывел.
         System.out.println("\n2. Вывод чисел в интервале (min и max) в порядке убывания");
         int a = 10, b = -1, c = 5, x = 0;
         boolean sorted = false;
