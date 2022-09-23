@@ -4,7 +4,7 @@ public class CyclesTheme {
         // Так как занятие связаны с циклами, я перенес основные счетчики которые повторяются сюда:
         int i = 0, k = 0, j = 0;
         System.out.println("1. Подсчет суммы четных и нечетных чисел");
-        int counter = -10, sumEven = 0, oddNums = 0;
+        int counter = -10, sumEven = 0, sumOdd = 0;
         do {
             if (counter % 2 == 0) {
                 sumEven += counter;
@@ -12,12 +12,12 @@ public class CyclesTheme {
                     System.out.print("От: " + counter + " До: ");
                 }
             } else {
-                oddNums += counter;
+                sumOdd += counter;
             }
             counter++;
         } while (counter != 21);
         System.out.println(counter);
-        System.out.println("Сумма четных чисел = " + sumEven + ", Сумма не четных чисел = " + oddNums); 
+        System.out.println("Сумма четных чисел = " + sumEven + ", Сумма не четных чисел = " + sumOdd); 
         //Ноль делится на все степени двойки, по канону это самое четное число, отдельно не вывел.
 
         System.out.println("\n2. Вывод чисел в интервале (min и max) в порядке убывания");
@@ -124,13 +124,13 @@ public class CyclesTheme {
         System.out.println("\n8. Проверка является ли число палиндромом");
         //используем старые наработки и старые переменные.
         num = 1234321;
-        int localNum = num;
+        copyNum = num;
         int reversed = 0;
         boolean endReverse = false;
         while (!endReverse) {
-            int digit = localNum % 10;
+            int digit = copyNum % 10;
             reversed = reversed * 10 + digit;
-            localNum /= 10;
+            copyNum /= 10;
             if (reversed >= num) {
                 endReverse = true;
             }
@@ -144,17 +144,17 @@ public class CyclesTheme {
         System.out.println("\n9. Определение, является ли число счастливым");
         //старые переменные.
         num = 123123;
-        localNum = num;
+        copyNum = num;
         i = 0;
         j = 0;
         for (k = 0; k <= 6; k++) {
-            int digit = localNum % 10;
+            int digit = copyNum % 10;
             if (k < 3) {
                 i += digit;
             } else {
                 j += digit;
             }
-            localNum /= 10;
+            copyNum /= 10;
         }
         if (i == j) {
             System.out.println("Число (" + num + ") - Является счастливым");
@@ -163,22 +163,21 @@ public class CyclesTheme {
         }
 
         System.out.println("\n10. Вывод таблицы умножения Пифагора");
-        System.out.println("\nТаблица Пифагора");
-        for(i = 1; i <= 9; i++) {
-            if ( i == 1) {
-                System.out.print(" " + "|");
-                for (k = 2; k <= 9; k++) {
-                    System.out.printf("%2d", k);
-                    System.out.print(" ");
-                }
-                System.out.println("\n-|-----------------------");
-                continue;
-            } else {
-                System.out.print(i + "|");
-                for (j = i, k = 2; k <= 9; k++, j++) {
-                    System.out.printf("%2d", k * i);
-                    System.out.print(" ");
-                }
+        //I этап: размечаем верхнюю область
+        System.out.println("     " + "Таблица Пифагора");
+        System.out.print("_" + "|_");
+        for (k = 2; k <= 9; k++) {
+            System.out.printf("%1d", k);
+            System.out.print("__");
+        }
+        //II этап: o(n²) 1. Ставим цифру и делаем вертикальную разметку.
+        //2. Входим во вложенный цикл и перемножаем цифы [2;9]
+        System.out.println();
+        for(i = 2; i <= 9; i++) {
+            System.out.print(i + "|");
+            for (j = i, k = 2; k <= 9; k++, j++) {
+                System.out.printf("%2d", k * i);
+                System.out.print(" ");
             }
             System.out.println();
         }
