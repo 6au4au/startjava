@@ -18,7 +18,6 @@ public class CyclesTheme {
         } while (counter != 21);
         System.out.println(counter);
         System.out.println("Сумма четных чисел = " + sumEven + ", Сумма не четных чисел = " + sumOdd); 
-        //Ноль делится на все степени двойки, по канону это самое четное число, отдельно не вывел.
 
         System.out.println("\n2. Вывод чисел в интервале (min и max) в порядке убывания");
         int max = 10, min = -1;
@@ -54,7 +53,6 @@ public class CyclesTheme {
         System.out.println();
 
         System.out.println("\n5. Проверка количества единиц на четность");
-        //(3)_14(1)_59(1) 
         num = 3141591; //используем переменную из старого задания
         int copyNum = num;
         int countOnes = 0;
@@ -77,7 +75,6 @@ public class CyclesTheme {
             System.out.println("**********");
         }
         System.out.println("Треугольник");
-        k = 1;
         while(k <= 5) {
             if (k == 1) {
                 System.out.println("#####");
@@ -103,7 +100,7 @@ public class CyclesTheme {
                 System.out.println("$$$");
             }
             k++;
-        } while (k != 5);
+        } while (k <= 5);
 
         System.out.println("\n7. Отображение ASCII-символов");
         boolean tableReadines = false; 
@@ -183,8 +180,3 @@ public class CyclesTheme {
         }
     }   
 }
-/*
-    TO DO:
-    Повторить конспект
-
-*/
