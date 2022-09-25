@@ -33,17 +33,18 @@ public class CyclesTheme {
         System.out.print("; sum = " + sum + "\n");
 
         System.out.println("\n4. Вывод чисел на консоль в несколько строк");
-        int b = 1;
-        //i - задает шаг итерации, b считает количество чисел и задает формат
-        //b = 1 для: избежания проверки (b%5==0 && b != 0). А также для более привычной работы с матрицей.
-        for (int i = 1; i < 24; i += 2, b++) {
+        counter = 1;
+        //i - задает шаг итерации, counter считает количество чисел и задает формат
+        //counter = 1 для: избежания проверки (var%5==0 && var != 0). А также для более привычной работы с матрицей.
+        for (int i = 1; i < 24; i += 2) {
             System.out.printf("%4d", i);
-            if (b % 5 == 0) {
+            if (counter % 5 == 0) {
                 System.out.println();
             }
+            counter++;
         }
-        //--b количество цифр в матрице = b - 1.
-        for(--b; b % 5 != 0; b++) {
+        //--counter количество цифр в матрице = counter - 1.
+        for(--counter; counter % 5 != 0; counter++) {
             System.out.printf("%4d", 0);
         }
         System.out.println();
