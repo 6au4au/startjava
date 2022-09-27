@@ -17,8 +17,14 @@ public class CyclesTheme {
         System.out.println("Сумма четных чисел = " + sumEven + ", Сумма нечетных чисел = " + sumOdd); 
 
         System.out.println("\n2. Вывод чисел в интервале (min и max) в порядке убывания");
-        for (int min = -1, max = 10 - 1; max > min; max--) {
-            System.out.print(max + " ");
+        int min = -1, max = 0;
+        for (int i = min; i <= 10; i++) {
+            if (i >= min) {
+                max = i;
+            }
+        }
+        for (int i = max - 1; i > min; i--) {
+            System.out.print(i + " ");
         }
         System.out.println();
 
@@ -32,19 +38,16 @@ public class CyclesTheme {
         }
         System.out.print("; sum = " + sum + "\n");
 
-        System.out.println("\n4. Вывод чисел на консоль в несколько строк");
-        counter = 1;
-        //i - задает шаг итерации, counter считает количество чисел и задает формат
-        //counter = 1 для: избежания проверки (var%5==0 && var != 0). А также для более привычной работы с матрицей.
+        System.out.print("\n4. Вывод чисел на консоль в несколько строк");
+        counter = 0;
         for (int i = 1; i < 24; i += 2) {
-            System.out.printf("%4d", i);
             if (counter % 5 == 0) {
                 System.out.println();
             }
+            System.out.printf("%4d", i);
             counter++;
         }
-        //--counter количество цифр в матрице = counter - 1.
-        for(--counter; counter % 5 != 0; counter++) {
+        for(; counter % 5 != 0; counter++) {
             System.out.printf("%4d", 0);
         }
         System.out.println();
@@ -73,54 +76,53 @@ public class CyclesTheme {
             }
             System.out.println();
         }
-        int k = 5;
-        System.out.println("Треугольник");
-        while(k >= 1) {
-            int x = k--;
-            while(x >= 1) {
+        int amountLines = 5;
+        System.out.println("\nТреугольник");
+        while(amountLines >= 1) {
+            int amountCharacters = amountLines--;
+            while(amountCharacters >= 1) {
                 System.out.print('#');
-                x--;
+                amountCharacters--;
             }
             System.out.println();
         }
-        System.out.println("Второй треугольник");
-        //возрастание
-        k = 0;
+        System.out.println("\nВторой треугольник");
+        //Треугольник равнобедренный. median = a / 2 + a % 2; Число должно быть нечетным.
+        amountLines = 5;
+        // Находим медиану параллельно которой будет вершина (средина треугольника, дойдя до нее:
+        //пойдем на уменьшение)
+        int median = amountLines / 2 + amountLines % 2;
+        int amountCharacters = 0;
+        int selectLine = 1;
         do {
-            k++;
-            int x = 0;
+            //пока не дошли до центра увеличиваем количество символов на печать, если дошли - уменьшаем.
+            if (selectLine <= median) {
+                amountCharacters++;
+            } else {
+                amountCharacters--;
+            }
+            int printedCharacters = 0;
             do {
                 System.out.print('$');
-                x++;
-            } while (x != k);
+                printedCharacters++;
+            } while (printedCharacters < amountCharacters);
+            selectLine++;
             System.out.println();
-        } while (k < 3);
-        //убывание
-        do {
-            k--;
-            int x = k;
-            do {
-                System.out.print('$');
-                x--;
-            } while (x > 0);
-            System.out.println();
-        } while (k > 1);
+        } while (selectLine <= amountLines);
 
         System.out.println("\n7. Отображение ASCII-символов");
         System.out.println("I. Символы идущие до цифр и имеющие не четные коды");
         System.out.println("DEC" + " " + "CHAR");
         for (int i = 0; i < 48; i++) {
             if (i % 2 != 0) {
-                System.out.printf("%2d", i);
-                System.out.println("    " + (char) i);
+                System.out.printf("%2d%5c%n", i, (char) i);
             }
         }
         System.out.println("II. маленькие английские буквы имеющие четные коды");
         System.out.println("DEC" + " " + "CHAR");
         for (int i = 97; i <= 122; i++) {
             if (i % 2 == 0) {
-                System.out.printf("%3d", i);
-                System.out.println("   " + (char) i);
+                System.out.printf("%3d%5c%n", i, (char) i);
             }
         }
 
@@ -165,8 +167,7 @@ public class CyclesTheme {
         System.out.println("     " + "Таблица Пифагора");
         System.out.print("_" + "|_");
         for (int j = 2; j <= 9; j++) {
-            System.out.printf("%1d", j);
-            System.out.print("__");
+            System.out.printf("%1d%s", j, "__");
         }
         //II этап: o(n²); 1. Ставим цифру и делаем вертикальную разметку.
         //2. Входим во вложенный цикл и перемножаем цифы [2;9]
@@ -174,8 +175,7 @@ public class CyclesTheme {
         for(int i = 2; i <= 9; i++) {
             System.out.print(i + "|");
             for (int j = i, c = 2; c <= 9; c++, j++) {
-                System.out.printf("%2d", c * i);
-                System.out.print(" ");
+                System.out.printf("%2d%c", c * i, ' ');
             }
             System.out.println();
         }
