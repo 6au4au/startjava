@@ -29,7 +29,7 @@ public class CyclesTheme {
         System.out.println();
 
         System.out.println("\n3. Вывод реверсивного числа и сумму его цифр");
-        int num = 1234, sum = 0;
+        int num = 1234, sum = 0; 
         while (num != 0) {
             int digit = num % 10;
             System.out.print(digit);
@@ -170,7 +170,7 @@ public class CyclesTheme {
             System.out.printf("%1d%s", j, "__");
         }
         //II этап: o(n²); 1. Ставим цифру и делаем вертикальную разметку.
-        //2. Входим во вложенный цикл и перемножаем цифы [2;9]
+        //2. Входим во вложенный цикл и перемножаем цифры [2;9]
         System.out.println();
         for(int i = 2; i <= 9; i++) {
             System.out.print(i + "|");
