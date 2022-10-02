@@ -14,11 +14,14 @@ public class NumericGame {
             try {
                 Thread.sleep(500);
             } catch(InterruptedException ex) { }
-            System.out.println("Гадание на кофейной гуще: " + (i * 10) + "%");
-            //4. 
+            System.out.println("Гадание на кофейной гуще");
+            //4. сделаем лайтовую проверку на < 0 > 99
+            if (guess < 0 || guess > 99) {
+                i--;
+            }
         }
         //Очень простой блок ввода числ
-        System.out.println("\nЧисло выпало, сломай клавиатуру " + guess);
+        System.out.println("\nЧисло выпало, сломай клавиатуру");
         Scanner sc = new Scanner(System.in);
         int input = 0;
         do {
