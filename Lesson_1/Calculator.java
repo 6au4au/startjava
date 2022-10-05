@@ -2,11 +2,9 @@ public class Calculator {
 
     public static void main(String[] args) {
         System.out.println("Welcome to Calculator Prototype");
-        //операнды
         int a = 3, b = 3;
         //оператор (+, -, *, /, ^, %)
-        char sign = '^';
-        //результат
+        char sign = '№';
         int result = 0;
         if (sign == '+') {
             result = a + b;
@@ -24,13 +22,9 @@ public class Calculator {
         } else if (sign == '%') {
             result = a % b;
         } else {
-            System.out.println("Поддерживаются только следующее символы: " + "+; -; *; /; ^; %");
+            System.out.println("Поддерживаются только следующее символы: " + "+; -; *; /; ^; %" + "\nsig expn");
+            return;
         }
-        
-        if (sign == '+' || sign == '-' || sign == '*' || sign == '/' || sign == '^' || sign == '%') {
-            System.out.println(a + " " + sign + " " + b + " = " + result);
-        } else {
-            System.out.println("sign expn");
-        }
+        System.out.println(a + " " + sign + " " + b + " = " + result);
     }
 }

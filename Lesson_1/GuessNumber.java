@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class NumericGame {
+public class GuessNumber {
 
     public static void main(String[] args) {
         System.out.println("          Numeric GAME\n   Добро пожаловать, КРУТИМ!");
@@ -21,7 +21,7 @@ public class NumericGame {
             }
         }
         //Очень простой блок ввода числ
-        System.out.println("\nЧисло выпало, сломай клавиатуру");
+        System.out.println("\nЧисло выпало, сломай клавиатуру ");
         Scanner sc = new Scanner(System.in);
         int input = 0;
         do {
