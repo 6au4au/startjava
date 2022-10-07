@@ -15,7 +15,7 @@ class Person {
 
     void move(float distanceInMeters) {
         movement = true;
-        speed +=3;
+        speed += 3;
         String movementType;
         if (speed <= 3) {
             movementType = "walked";
