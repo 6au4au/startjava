@@ -5,7 +5,6 @@ class Person {
     float weight = 88.6f;
     float height = 1.82f;
     int speed;
-    double learningProgress;
     boolean movement;
 
     void stay() {
@@ -13,7 +12,7 @@ class Person {
         speed = 0;
         movement = false;
     }
-    void move(double distanceInMeters) {
+    void move(float distanceInMeters) {
         movement = true;
         speed +=3;
         String movementType;
@@ -22,16 +21,16 @@ class Person {
         } else {
             movementType = "runned";
         }
-        for (double i = 0, j = (double) speed / 7; i <= distanceInMeters; i += j) {
+        float convert = (float) speed / 3.6f;
+        for (float i = convert; i <= distanceInMeters; i += convert) {
             System.out.println(name + " " + movementType + " " + i + " meters.");
         }
         this.stay();
     }
-    void run(double distanceInMeters) {
+    void run(float distanceInMeters) {
         movement = true;
         speed += 4;
         this.move(distanceInMeters);
-        this.stay();
     }
     void jump() {
         System.out.println(name + " jumped up!");
