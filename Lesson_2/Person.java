@@ -4,24 +4,44 @@ class Person {
     int age = 23;
     float weight = 88.6f;
     float height = 1.82f;
+    int speed;
+    double learningProgress;
+    boolean movement;
 
     void stay() {
-        System.out.println("- I'm waiting!");
+        System.out.println(name + ": - I'm waiting!");
+        speed = 0;
+        movement = false;
     }
-    void move() {
-        System.out.println("move");
+    void move(double distanceInMeters) {
+        movement = true;
+        speed +=3;
+        String movementType;
+        if (speed <= 3) {
+            movementType = "walked";
+        } else {
+            movementType = "runned";
+        }
+        for (double i = 0, j = (double) speed / 7; i <= distanceInMeters; i += j) {
+            System.out.println(name + " " + movementType + " " + i + " meters.");
+        }
+        this.stay();
     }
-    void run() {
-        System.out.println("run");
+    void run(double distanceInMeters) {
+        movement = true;
+        speed += 4;
+        this.move(distanceInMeters);
+        this.stay();
     }
     void jump() {
-        System.out.println("jump");
+        System.out.println(name + " jumped up!");
+        this.stay();
     }
 
-    String say() {
-        return "Hi!";
+    void say(String whtToSay) {
+        System.out.println(name + ": - " + whtToSay);
     }
     void learningJava() {
-        System.out.println("Start Learning");
+        System.out.println(name + ": - I'm learning JAVA!");
     }
 }
