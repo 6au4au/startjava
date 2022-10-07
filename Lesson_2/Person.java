@@ -12,6 +12,7 @@ class Person {
         speed = 0;
         movement = false;
     }
+
     void move(float distanceInMeters) {
         movement = true;
         speed +=3;
@@ -25,21 +26,24 @@ class Person {
         for (float i = convert; i <= distanceInMeters; i += convert) {
             System.out.println(name + " " + movementType + " " + i + " meters.");
         }
-        this.stay();
+        stay();
     }
+
     void run(float distanceInMeters) {
         movement = true;
         speed += 4;
-        this.move(distanceInMeters);
+        move(distanceInMeters);
     }
+
     void jump() {
         System.out.println(name + " jumped up!");
-        this.stay();
+        stay();
     }
 
     void say(String whtToSay) {
         System.out.println(name + ": - " + whtToSay);
     }
+
     void learningJava() {
         System.out.println(name + ": - I'm learning JAVA!");
     }
