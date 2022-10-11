@@ -116,7 +116,7 @@ class Calculator {
     public void off() {
         System.out.print("Желаете продолжить (YES/NO): ");
         while (true) {
-            //120 строка очистка сканнера:
+            //120 строка очистка сканнера от Enter:
             sc.nextLine();
             choice = sc.nextLine().trim();
             if (choice.equalsIgnoreCase("no")) {
