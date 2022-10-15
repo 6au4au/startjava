@@ -1,39 +1,34 @@
 import java.util.Scanner;
-
-public class GuessNumber {
-
-    public static void main(String[] args) {
-        System.out.println("          Numeric GAME\n   Добро пожаловать, КРУТИМ!");
-        //принцип работы моего алгоритма изложен в коде:
-        //1. сюда будем помещать рандомное число которое нам даст занятая RAM из Runtime проинициализируем его max.
-        Long guess = 100L;
-        for (int i = 0; i < 10; i++) {
-            //2. Цепочку этих методов выучил на хекслете:
-            guess = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) % 100;
-            //3. Дабы usedMemory менялась быстрее завершения программы здесь требуется задержка:
-            try {
-                Thread.sleep(500);
-            } catch(InterruptedException ex) { }
-            System.out.println("Гадание на кофейной гуще");
-            //4. сделаем лайтовую проверку на < 0 > 99
-            if (guess < 0 || guess > 99) {
-                i--;
-            }
-        }
-        //Очень простой блок ввода числ
-        System.out.println("\nЧисло выпало, сломай клавиатуру ");
-        Scanner sc = new Scanner(System.in);
-        int input = 0;
+/* GuessNumber(Отвечает за игровой процесс):
+    Игровой процесс?:
+1. Генерация числа.
+2. Хранение сгенерированного числа.
+3. Проверки входящих чисел из класса Player.
+4. Подсказки после проверки.
+5. Контроль хода игрока!*/
+class GuessNumber {
+    private int inGameNumber = 2234;
+    private boolean includedGame;
+    
+    public void gameProcess(Player player1, Player player2, Scanner youScanner) {
         do {
-            input = sc.nextInt();
-            if ((long) input < guess) {
-                System.out.println("Число " + input + " меньше того что загадал компьютер.");
-            } else {
-                System.out.println("Число " + input + " больше того что загадал компьютер.");
-            }
-        } while ((long) input != guess);
-        System.out.println("\nПОЗДРАВЛЯЮ ВЫ ВЫИГРАЛИ, ЧИСЛО " + input);
-
-        sc.close();
+            includedGame = true;
+            player1.setNumber(youScanner.nextInt());
+            System.out.println(checkInGameNumber(player1));
+            player2.setNumber(youScanner.nextInt());
+            System.out.println(checkInGameNumber(player2));
+        } while (includedGame);
     }
+
+    public String checkInGameNumber(Player player) {
+        if (player.getNumber() < inGameNumber) {
+            return player + ": ваше число меньше!";
+        } else if (player.getNumber() > inGameNumber) {
+            return player + ": ваше число больше!";
+        } else {
+            includedGame = false;
+            return player + ": ВЫИГРАЛ И УГАДАЛ ВЕРНОЕ ЧИСЛО! = " + inGameNumber;
+        }
+    }
+    //(int) Math.random() * ++max;
 }
