@@ -5,10 +5,12 @@ public class GuessNumberTest {
     private static boolean includedGame = false;
 
     private Scanner rematchInput = new Scanner(System.in);
-    private void endTheGame(Scanner testScan) {
+    private void endTheGame(Scanner youScanner) {
         do {
             System.out.println("Желаете продолжить игру? Ответы: yes/no!");
-            String answer = testScan.nextLine();
+            //Отчистим сканнер от Enter:
+            youScanner.nextLine();
+            String answer = youScanner.nextLine();
             if (answer.equalsIgnoreCase("yes")) {
                 includedGame = true;
                 break;
@@ -23,22 +25,22 @@ public class GuessNumberTest {
     }
 
     public static void main(String[] args) {
-        Scanner myScanner = new Scanner(System.in);
         GuessNumber gameModule = new GuessNumber();
         GuessNumberTest userControl = new GuessNumberTest();
         System.out.println("Добро пожаловать\nОкно регистрации");
         System.out.print("Игрок номер 1: ");
+        Scanner myScanner = new Scanner(System.in);
         Player player1 = new Player(myScanner.nextLine());
         System.out.println();
         System.out.print("Игрок номер 2: ");
         Player player2 = new Player(myScanner.nextLine());
-        //Подчистим сканнер перед вводом интов:
-        myScanner.next();
-        System.out.println("Начинаем!");
+        System.out.println();
+        System.out.println("Начинаем!\nЧИСЛО СОЗДАНО УДАЧИ!");
         do {
             includedGame = true;
             gameModule.gameProcess(player1, player2, myScanner);
             userControl.endTheGame(myScanner);
         } while (userControl.includedGame);
+        myScanner.close();
     }
 }

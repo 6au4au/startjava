@@ -1,34 +1,47 @@
 import java.util.Scanner;
-/* GuessNumber(Отвечает за игровой процесс):
-    Игровой процесс?:
-1. Генерация числа.
-2. Хранение сгенерированного числа.
-3. Проверки входящих чисел из класса Player.
-4. Подсказки после проверки.
-5. Контроль хода игрока!*/
+
 class GuessNumber {
-    private int inGameNumber = 2234;
+    private int inGameNumber;
     private boolean includedGame;
-    
+
     public void gameProcess(Player player1, Player player2, Scanner youScanner) {
+        generateNumber();
+        int whoseMove = 0;
         do {
+            whoseMove++;
             includedGame = true;
-            player1.setNumber(youScanner.nextInt());
-            System.out.println(checkInGameNumber(player1));
-            player2.setNumber(youScanner.nextInt());
-            System.out.println(checkInGameNumber(player2));
+            Player linkToPlayer = whoseMove % 2 != 0 ? player1 : player2;
+            System.out.println(linkToPlayer.getName() + ": Введите число!");
+            if (youScanner.hasNextInt()) {
+                linkToPlayer.setNumber(youScanner.nextInt());
+                if (linkToPlayer.getNumber() <= 0 || linkToPlayer.getNumber() > 100) {
+                    whoseMove--;
+                    continue;
+                }
+            } else {
+                System.out.println(linkToPlayer.getName() + " Поддерживаются только целые положительные числа 1 <-> 100");
+                //Чистим сканнер!
+                youScanner.next();
+                whoseMove--;
+                continue;
+            }
+            System.out.println(checkInGameNumber(linkToPlayer));
         } while (includedGame);
     }
 
-    public String checkInGameNumber(Player player) {
+    private void generateNumber() {
+        inGameNumber = (int) (Math.random() * ((100 - 1) + 1));
+    }
+
+    private String checkInGameNumber(Player player) {
         if (player.getNumber() < inGameNumber) {
-            return player + ": ваше число меньше!";
+            return player.getName() + ": ваше число меньше!";
         } else if (player.getNumber() > inGameNumber) {
-            return player + ": ваше число больше!";
+            return player.getName() + ": ваше число больше!";
+            //выигрыш!
         } else {
             includedGame = false;
-            return player + ": ВЫИГРАЛ И УГАДАЛ ВЕРНОЕ ЧИСЛО! = " + inGameNumber;
+            return player.getName() + ": ВЫИГРАЛ И УГАДАЛ ВЕРНОЕ ЧИСЛО! = " + inGameNumber;
         }
     }
-    //(int) Math.random() * ++max;
 }

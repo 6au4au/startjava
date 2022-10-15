@@ -1,6 +1,6 @@
 class Player {
     private String name;
-    private int number = -1;
+    private int number;
 
     Player(String name) {
         this.name = name;
@@ -15,6 +15,11 @@ class Player {
     }
 
     public void setNumber(int number) {
-        this.number = number;
+        if (number <= 0) {
+            System.out.println(name.toUpperCase() + " ERROR: Число не можеть быть меньше 1!");
+            number = 0;
+        } else {
+            this.number = number;
+        }
     }
 }
