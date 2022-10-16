@@ -22,10 +22,10 @@ class EmployeeBook {
         }
     }
     //мы не удаляем пользователя а помечаем индекс как готовый к перезаписи:
-    public void deleteUser(Employee employee, EmployeeBook employeeBook) {
-        for (int i = 0; i < employeeBook.rewritePull.length - 1; i++) {
-            if (employeeBook.rewritePull[i] == 0) {
-                employeeBook.rewritePull[i] = employee.getId();
+    public void deleteUser(Employee employee) {
+        for (int i = 0; i < rewritePull.length - 1; i++) {
+            if (rewritePull[i] == 0) {
+                rewritePull[i] = employee.getId() - 1;
             }
         }
     }
@@ -40,9 +40,15 @@ class EmployeeBook {
         return true;
     }
 
+    public void showWorkers() {
+        for (Employee i : bookArr) {
+            System.out.println("ID FirstName LastName DEP PAY");
+            System.out.println(i.getId() + " " + i.getFirstName() + " " + i.getLastName() + " " +
+                    i.getDepartmentNumber() + " " + i.getPaymentForMounth());
+        }
+    }
+// ТЕСТОВАЯ ОБЛАСТЬ: 
     public static void main(String[] args) {
         EmployeeBook book = new EmployeeBook();
-        book.createUser("TEST", " ", 1, 3000.0);
-        System.out.println(book.bookArr[0].firstName);
     }
 }

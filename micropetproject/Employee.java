@@ -1,7 +1,7 @@
 class Employee {
     private static int workersCounter = 0;
     private int id;
-    public String firstName;
+    private String firstName;
     private String lastName;
     private int departmentNumber;
     private double paymentForMounth;
@@ -24,5 +24,21 @@ class Employee {
 
     public int getId() {
         return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public int getDepartmentNumber() {
+        return departmentNumber;
+    }
+
+    public double getPaymentForMounth() {
+        return paymentForMounth;
     }
 }
