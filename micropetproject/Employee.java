@@ -1,12 +1,12 @@
 class Employee {
-    private static long workersCounter = 0L;
-    private long id;
+    private static int workersCounter = 0;
+    private int id;
     public String firstName;
     private String lastName;
     private int departmentNumber;
     private double paymentForMounth;
 
-    public Employee(String firstName, String lastName, int departmentNumber, double paymentForMounth, long id) {
+    public Employee(String firstName, String lastName, int departmentNumber, double paymentForMounth, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.departmentNumber = departmentNumber;
@@ -18,7 +18,11 @@ class Employee {
         ++workersCounter;
     }
 
-    public static long getWorkersCounter() {
+    public static int getWorkersCounter() {
         return workersCounter;
+    }
+
+    public int getId() {
+        return id;
     }
 }
