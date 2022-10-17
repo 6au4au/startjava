@@ -23,7 +23,7 @@ public class CalculatorTest {
                 calculator.setB(scanner.nextInt());
                 System.out.print("\nРезультат: ");
                 System.out.println(calculator.getA() + " " + calculator.getMatOperation() + " " + calculator.getB() + 
-                        " = " + calculator.showResult());
+                        " = " + calculator.getResult());
                 //очистка сканнера:
                 scanner.nextLine();
             } else {
@@ -36,7 +36,6 @@ public class CalculatorTest {
                     System.out.println(err3); 
                 }
             }
-
         } while (counter <= 1);
     }
 

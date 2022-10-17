@@ -46,30 +46,25 @@ class Calculator {
         return matOperation;
     }
 
-    public int showResult() {
+    public int getResult() {
         int result = 0;
         switch (matOperation) {
             case '+':
-                result = a + b;
-                break;
+                return a + b;
             case '-':
-                result = a - b;
-                break;
+                return a - b;
             case '*':
-                result = a * b;
-                break;
+                return a * b;
             case '/':
-                result = a / b;
-                break;
+                return a / b;
             case '^':
                 result = a;
                 for (int i = 1; i < b; i++) {
                     result *= a;
                 }
-                break;
+                return result;
             case '%':
-                result = a % b;
-                break;
+                return a % b;
         }
         return result;
     }
