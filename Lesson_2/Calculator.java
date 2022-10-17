@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 class Calculator {
     //оператор (+, -, *, /, ^, %)
     private int a, b;
@@ -20,11 +21,6 @@ class Calculator {
 
     public void setB(int b) {
         this.b = b;
-    }
-
-    public void reset() {
-        a = 0;
-        b = 0;
     }
 
     public void setMatOperation(Scanner scanner) {
