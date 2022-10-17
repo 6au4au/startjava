@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class CalculatorTest {
     //ошибка которая связанна обработкой ответа о продолжении/завершении работы: 
     private static String err3 = "ERR N3: Поддерживается только ввод: YES или NO";
-    private String included = "yes";
+    private String answer = "yes";
     public static void main(String[] args) {
         CalculatorTest calculatorTest = new CalculatorTest();
         Calculator calculator = new Calculator();
@@ -30,7 +30,7 @@ public class CalculatorTest {
                 boolean answer = calculatorTest.wantToContinue(scanner, calculator);
                 if (answer == false) {
                     break;
-                } else if (answer == true && calculatorTest.included.equalsIgnoreCase("yes")) {
+                } else if (answer == true && calculatorTest.answer.equalsIgnoreCase("yes")) {
                     counter--;
                 } else {
                     System.out.println(err3); 
@@ -41,8 +41,8 @@ public class CalculatorTest {
 
     private boolean wantToContinue(Scanner scanner, Calculator calculator) {
         System.out.print("Желаете продолжить (YES/NO): ");
-        included = scanner.nextLine();
-        if (included.equalsIgnoreCase("no")) {
+        answer = scanner.nextLine();
+        if (answer.equalsIgnoreCase("no")) {
             System.out.println("Power OFF.");
             return false;
         }
