@@ -2,17 +2,16 @@ import java.util.Scanner;
 
 public class CalculatorTest {
     //ошибка которая связанна обработкой ответа о продолжении/завершении работы: 
-    private static String err3 = "ERR N3: Поддерживается только ввод: YES или NO";
+    private String err3 = "ERR N3: Поддерживается только ввод: YES или NO";
     private String answer = "yes";
+
     public static void main(String[] args) {
         CalculatorTest calculatorTest = new CalculatorTest();
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
 
-        int counter = 0;
         do {
-            if (counter == 0) {
-                counter++;
+            if (!calculator.getCounted()) {
                 System.out.print("Введите первое число: ");
                 calculator.setA(scanner.nextInt());
                 System.out.print("\nУкажите знак математической операции: (+, -, *, /, ^, %): ");
@@ -24,28 +23,24 @@ public class CalculatorTest {
                 System.out.print("\nРезультат: ");
                 System.out.println(calculator.getA() + " " + calculator.getMatOperation() + " " + calculator.getB() + 
                         " = " + calculator.getResult());
-                //очистка сканнера:
                 scanner.nextLine();
-            } else {
-                boolean answer = calculatorTest.wantToContinue(scanner, calculator);
-                if (answer == false) {
-                    break;
-                } else if (answer == true && calculatorTest.answer.equalsIgnoreCase("yes")) {
-                    counter--;
-                } else {
-                    System.out.println(err3); 
-                }
+            } else if (!calculatorTest.switchOff(scanner, calculator)) {
+                break;
             }
-        } while (counter <= 1);
+        } while (true);
     }
 
-    private boolean wantToContinue(Scanner scanner, Calculator calculator) {
+    private boolean switchOff(Scanner scanner, Calculator calculator) {
         System.out.print("Желаете продолжить (YES/NO): ");
         answer = scanner.nextLine();
-        if (answer.equalsIgnoreCase("no")) {
-            System.out.println("Power OFF.");
+        if (answer.equalsIgnoreCase("yes")) {
+            calculator.resetCounted();
+            return true;
+        } else if (answer.equalsIgnoreCase("no")) {
             return false;
+        } else {
+            System.out.println(err3);
+            return true;
         }
-        return true;
     }
 }

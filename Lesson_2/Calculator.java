@@ -4,6 +4,7 @@ class Calculator {
     //оператор (+, -, *, /, ^, %)
     private int a, b;
     private char matOperation;
+    private boolean counted = false;
     private String err1 = "ERR N1: Поддерживаются только целые положительные числа!";
     private String err2 = "ERR N2: Поддерживаются только эти математические операции: (+, -, *, /, ^, %)";
     
@@ -47,7 +48,7 @@ class Calculator {
     }
 
     public int getResult() {
-        int result = 0;
+        counted = true;
         switch (matOperation) {
             case '+':
                 return a + b;
@@ -58,7 +59,7 @@ class Calculator {
             case '/':
                 return a / b;
             case '^':
-                result = a;
+                int result = a;
                 for (int i = 1; i < b; i++) {
                     result *= a;
                 }
@@ -66,6 +67,14 @@ class Calculator {
             case '%':
                 return a % b;
         }
-        return result;
+        return 0;
+    }
+
+    public boolean getCounted() {
+        return counted;
+    }
+
+    public void resetCounted() {
+        counted = false;
     }
 }
