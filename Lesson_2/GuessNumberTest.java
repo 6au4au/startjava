@@ -1,45 +1,42 @@
 import java.util.Scanner;
 
 public class GuessNumberTest {
-    private GuessNumber gameModule = new GuessNumber();
-    private static boolean includedGame = false;
+    private static boolean isNext = true;
 
     public static void main(String[] args) {
-        GuessNumber gameModule = new GuessNumber();
-        GuessNumberTest userControl = new GuessNumberTest();
+        GuessNumber guessNumber = new GuessNumber();
+        GuessNumberTest guessNumberTest = new GuessNumberTest();
         System.out.println("Добро пожаловать\nОкно регистрации");
         System.out.print("Игрок номер 1: ");
-        Scanner myScanner = new Scanner(System.in);
-        Player player1 = new Player(myScanner.nextLine());
+        Scanner scanner = new Scanner(System.in);
+        Player player1 = new Player(scanner.nextLine());
         System.out.println();
         System.out.print("Игрок номер 2: ");
-        Player player2 = new Player(myScanner.nextLine());
+        Player player2 = new Player(scanner.nextLine());
         System.out.println();
-        System.out.println("Начинаем!\nЧИСЛО СОЗДАНО УДАЧИ!");
         do {
-            includedGame = true;
-            gameModule.startGame(player1, player2, myScanner);
-            userControl.endTheGame(myScanner);
-        } while (userControl.includedGame);
-        myScanner.close();
+            if (isNext) {
+                System.out.println("Начинаем!\nЧИСЛО СОЗДАНО УДАЧИ!");
+                isNext = false;
+                guessNumber.startGame(player1, player2, scanner);
+                scanner.nextLine();
+            }
+            System.out.println("Желаете продолжить игру? Ответы: yes/no!");
+        } while (guessNumberTest.wantMore(scanner.nextLine()));
+        System.out.println("Завершение!");
     }
 
-    private void endTheGame(Scanner youScanner) {
-        do {
-            System.out.println("Желаете продолжить игру? Ответы: yes/no!");
-            //Отчистим сканнер от Enter:
-            youScanner.nextLine();
-            String answer = youScanner.nextLine();
-            if (answer.equalsIgnoreCase("yes")) {
-                includedGame = true;
-                break;
-            } else if (answer.equalsIgnoreCase("no")) {
-                includedGame = false;
-                break;
-            } else {
-                System.out.println("Поддерживаются только следующие варианты ответов - yes/no");
-                continue;
-            }
-        } while (true);
+    private boolean wantMore(String answer) {
+        switch (answer.trim().toLowerCase()) {
+            case "yes":
+                isNext = true;
+                return true;
+            case "no":
+                isNext = false;
+                return false;
+            default:
+                System.out.println("Допустимые варианты ответов: YES/NO");
+                return true; 
+        }
     }
 }
