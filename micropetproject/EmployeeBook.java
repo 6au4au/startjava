@@ -40,15 +40,31 @@ class EmployeeBook {
         return true;
     }
 
-    public void showWorkers() {
+    public String searchEmployee(String firstName, String lastName) {
         for (Employee i : bookArr) {
-            System.out.println("ID FirstName LastName DEP PAY");
-            System.out.println(i.getId() + " " + i.getFirstName() + " " + i.getLastName() + " " +
-                    i.getDepartmentNumber() + " " + i.getPaymentForMounth());
+            if (i.getFirstName().toLowerCase() == firstName.toLowerCase() &&
+                        i.getLastName.toLowerCase() == lastName.toLowerCase()) {
+                return i.getId() + " " + i.getFirstName() + " " + i.getLastName() + " " +
+                        i.getDepartmentNumber() + " " + i.getPaymentForMounth();
+            }
         }
     }
-// ТЕСТОВАЯ ОБЛАСТЬ: 
-    public static void main(String[] args) {
-        EmployeeBook book = new EmployeeBook();
+
+    public void raiseEmployeePayment(Employee employee, int lifting) {
+        employee.setPayment(employee.getPayment() + (double) lifting);
+    }
+
+    public void raiseEmployeePayment(Employee employee, double lifting) {
+        employee.setPayment(employee.getPayment() + lifting);
+    }
+
+    public void indexedPayment(int percent) {
+        int counter = 0;
+        for (Employee i : bookArr) {
+            if (counter++ <= rewritePull.length && checkRewritePull()) {
+                continue;
+            }
+            raiseEmployeePayment(i, (i.getPayment() / 100) * (double) percent);
+        }
     }
 }

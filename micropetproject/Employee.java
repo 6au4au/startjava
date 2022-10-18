@@ -41,4 +41,8 @@ class Employee {
     public double getPaymentForMounth() {
         return paymentForMounth;
     }
+
+    public void setPaymentForMounth(double payment) {
+        this.payment = payment;
+    }
 }
