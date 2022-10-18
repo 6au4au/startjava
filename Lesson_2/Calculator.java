@@ -4,7 +4,6 @@ class Calculator {
     //оператор (+, -, *, /, ^, %)
     private int a, b;
     private char matOperation;
-    private boolean counted = false;
     private String err1 = "ERR N1: Поддерживаются только целые положительные числа!";
     private String err2 = "ERR N2: Поддерживаются только эти математические операции: (+, -, *, /, ^, %)";
     
@@ -12,16 +11,30 @@ class Calculator {
         return a;
     }
 
-    public void setA(int a) {
-        this.a = a;
+    public void setA(Scanner scanner) {
+        a = setDimens(scanner);
     }
 
     public int getB() {
         return b;
     }
 
-    public void setB(int b) {
-        this.b = b;
+    public void setB(Scanner scanner) {
+       b = setDimens(scanner);
+    }
+
+    private int setDimens(Scanner scanner) {
+        int integer = 0;
+        while (true) {
+            if (scanner.hasNextInt()) {
+                integer = scanner.nextInt();
+                break;
+            } else {
+                System.out.println(err1);
+            }
+            scanner.nextLine();
+        }
+        return integer;
     }
 
     public void setMatOperation(Scanner scanner) {
@@ -48,7 +61,6 @@ class Calculator {
     }
 
     public int getResult() {
-        counted = true;
         switch (matOperation) {
             case '+':
                 return a + b;
@@ -68,13 +80,5 @@ class Calculator {
                 return a % b;
         }
         return 0;
-    }
-
-    public boolean getCounted() {
-        return counted;
-    }
-
-    public void resetCounted() {
-        counted = false;
     }
 }
