@@ -4,28 +4,29 @@ class GuessNumber {
     private int inGameNumber;
     private boolean includedGame;
 
-    public void gameProcess(Player player1, Player player2, Scanner youScanner) {
+    // игровой процесс:
+    public void startGame(Player player1, Player player2, Scanner youScanner) {
         generateNumber();
         int whoseMove = 0;
         do {
             whoseMove++;
             includedGame = true;
-            Player linkToPlayer = whoseMove % 2 != 0 ? player1 : player2;
-            System.out.println(linkToPlayer.getName() + ": Введите число!");
+            Player player = whoseMove % 2 != 0 ? player1 : player2;
+            System.out.println(player.getName() + ": Введите число!");
             if (youScanner.hasNextInt()) {
-                linkToPlayer.setNumber(youScanner.nextInt());
-                if (linkToPlayer.getNumber() <= 0 || linkToPlayer.getNumber() > 100) {
+                player.setNumber(youScanner.nextInt());
+                if (player.getNumber() <= 0 || player.getNumber() > 100) {
                     whoseMove--;
                     continue;
                 }
             } else {
-                System.out.println(linkToPlayer.getName() + " Поддерживаются только целые положительные числа 1 <-> 100");
+                System.out.println(player.getName() + " Поддерживаются только целые положительные числа 1 <-> 100");
                 //Чистим сканнер!
                 youScanner.next();
                 whoseMove--;
                 continue;
             }
-            System.out.println(checkInGameNumber(linkToPlayer));
+            System.out.println(checkInGameNumber(player));
         } while (includedGame);
     }
 

@@ -4,7 +4,7 @@ class Calculator {
     //оператор (+, -, *, /, ^, %)
     private int a, b;
     private char matOperation;
-    private String err1 = "ERR N1: Поддерживаются только целые положительные числа!";
+    private String err1 = "ERR N1: Поддерживаются только целые положительные числа! ";
     private String err2 = "ERR N2: Поддерживаются только эти математические операции: (+, -, *, /, ^, %)";
     
     public int getA() {
