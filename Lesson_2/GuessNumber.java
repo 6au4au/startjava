@@ -3,7 +3,6 @@ import java.util.Scanner;
 class GuessNumber {
     private int inGameNumber;
     private boolean includedGame;
-
     // игровой процесс:
     public void startGame(Player player1, Player player2, Scanner youScanner) {
         generateNumber();
@@ -15,11 +14,7 @@ class GuessNumber {
             System.out.println(player.getName() + ": Введите число!");
             if (youScanner.hasNextInt()) {
                 player.setNumber(youScanner.nextInt());
-                if (player.getNumber() <= 0 || player.getNumber() > 100) {
-                    whoseMove--;
-                    continue;
-                }
-            } else {
+            } else if (!youScanner.hasNextInt() || player.getNumber() <= 0 || player.getNumber() > 100) {
                 System.out.println(player.getName() + " Поддерживаются только целые положительные числа 1 <-> 100");
                 //Чистим сканнер!
                 youScanner.next();
