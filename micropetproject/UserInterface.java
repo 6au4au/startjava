@@ -11,12 +11,14 @@ class UserInterface {
     EmployeeBook employeeBook = new EmployeeBook();
 
     public String show(String firstName, String lastName) {
-        String employee = employeeBook.serachEmployee(firstName, lastName);
-        System.out.println(employee);
     }
 
-    public String show(int departmentNumber) {
-
+    public void show(int departmentNumber) {
+        String[] departmentList = employeeBook.searchEmployee(departmentNumber);
+        String employee;
+        for (String i : departmentList) {
+            System.out.println(i);
+        }
     }
 
     public String show() {
@@ -24,7 +26,11 @@ class UserInterface {
     }
 
     public String search(String firstName, String lastName) {
-
+        String employee = employeeBook.searchEmployee(firstName, lastName);
+        if (employee == null) {
+            return "not found";
+        }
+        return employee;
     }
 
     public String back() {

@@ -40,22 +40,34 @@ class EmployeeBook {
         return true;
     }
 
+    public String[] searchEmployee(int departmentNumber) {
+        String[] departmentList = new String[5];
+        for (int i = 0; i < bookArr.length - 1; i++) {
+            if (bookArr[i].getDepartmentNumber() == departmentNumber) {
+                departmentList[i] = bookArr[i].getFirstName() + " " + bookArr[i].getFirstName() + " " +
+                        bookArr[i].getDepartmentNumber() + " " + bookArr[i].getPaymentForMounth();
+            }
+        }
+        return departmentList;
+    }
+
     public String searchEmployee(String firstName, String lastName) {
         for (Employee i : bookArr) {
             if (i.getFirstName().toLowerCase() == firstName.toLowerCase() &&
-                        i.getLastName.toLowerCase() == lastName.toLowerCase()) {
+                        i.getLastName().toLowerCase() == lastName.toLowerCase()) {
                 return i.getId() + " " + i.getFirstName() + " " + i.getLastName() + " " +
                         i.getDepartmentNumber() + " " + i.getPaymentForMounth();
             }
         }
+        return null;
     }
 
     public void raiseEmployeePayment(Employee employee, int lifting) {
-        employee.setPayment(employee.getPayment() + (double) lifting);
+        employee.setPaymentForMounth(employee.getPaymentForMounth() + (double) lifting);
     }
 
     public void raiseEmployeePayment(Employee employee, double lifting) {
-        employee.setPayment(employee.getPayment() + lifting);
+        employee.setPaymentForMounth(employee.getPaymentForMounth() + lifting);
     }
 
     public void indexedPayment(int percent) {
@@ -64,7 +76,7 @@ class EmployeeBook {
             if (counter++ <= rewritePull.length && checkRewritePull()) {
                 continue;
             }
-            raiseEmployeePayment(i, (i.getPayment() / 100) * (double) percent);
+            raiseEmployeePayment(i, (i.getPaymentForMounth() / 100) * (double) percent);
         }
     }
 }

@@ -43,6 +43,6 @@ class Employee {
     }
 
     public void setPaymentForMounth(double payment) {
-        this.payment = payment;
+        this.paymentForMounth = paymentForMounth;
     }
 }
