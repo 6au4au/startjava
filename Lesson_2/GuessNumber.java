@@ -1,43 +1,50 @@
 import java.util.Scanner;
 
 class GuessNumber {
-    private int inGameNumber;
-    private boolean includedGame;
+    private int secretNum;
+    Player player1;
+    Player player2;
+
+    GuessNumber(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+    }
+
     // игровой процесс:
-    public void startGame(Player player1, Player player2, Scanner youScanner) {
+    public void startGame(Scanner scanner) {
         generateNumber();
-        int whoseMove = 0;
+        int whoseMove = 1;
+        Player player;
         do {
             whoseMove++;
-            includedGame = true;
-            Player player = whoseMove % 2 != 0 ? player1 : player2;
+            player = (whoseMove % 2 != 0) ? player1 : player2;
             System.out.println(player.getName() + ": Введите число!");
-            if (youScanner.hasNextInt()) {
-                player.setNumber(youScanner.nextInt());
-            } else if (!youScanner.hasNextInt() || player.getNumber() <= 0 || player.getNumber() > 100) {
+            if (scanner.hasNextInt()) {
+                player.setNumber(scanner.nextInt());
+            } else if (!scanner.hasNextInt() || player.getNumber() <= 0 || player.getNumber() > 100) {
                 System.out.println(player.getName() + " Поддерживаются только целые положительные числа 1 <-> 100");
                 //Чистим сканнер!
-                youScanner.next();
+                scanner.next();
                 whoseMove--;
                 continue;
             }
-            System.out.println(checkInGameNumber(player));
-        } while (includedGame);
+        } while (checkSecretNum(player));
     }
 
     private void generateNumber() {
-        inGameNumber = (int) (Math.random() * ((100 - 1) + 1));
+        secretNum = (int) (Math.random() * ((100 - 1) + 1));
     }
 
-    private String checkInGameNumber(Player player) {
-        if (player.getNumber() < inGameNumber) {
-            return player.getName() + ": ваше число меньше!";
-        } else if (player.getNumber() > inGameNumber) {
-            return player.getName() + ": ваше число больше!";
+    private boolean checkSecretNum(Player player) {
+        if (player.getNumber() < secretNum) {
+            System.out.println(player.getName() + ": ваше число меньше!");
+        } else if (player.getNumber() > secretNum) {
+            System.out.println(player.getName() + ": ваше число меньше!");
             //выигрыш!
         } else {
-            includedGame = false;
-            return player.getName() + ": ВЫИГРАЛ И УГАДАЛ ВЕРНОЕ ЧИСЛО! = " + inGameNumber;
+            System.out.println(": ВЫИГРАЛ И УГАДАЛ ВЕРНОЕ ЧИСЛО! = " + secretNum);
+            return false;
         }
+        return true;
     }
 }

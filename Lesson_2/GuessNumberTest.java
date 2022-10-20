@@ -4,7 +4,6 @@ public class GuessNumberTest {
     private static boolean isNext = true;
 
     public static void main(String[] args) {
-        GuessNumber guessNumber = new GuessNumber();
         GuessNumberTest guessNumberTest = new GuessNumberTest();
         System.out.println("Добро пожаловать\nОкно регистрации");
         System.out.print("Игрок номер 1: ");
@@ -14,11 +13,12 @@ public class GuessNumberTest {
         System.out.print("Игрок номер 2: ");
         Player player2 = new Player(scanner.nextLine());
         System.out.println();
+        GuessNumber guessNumber = new GuessNumber(player1, player2);
         do {
             if (isNext) {
                 System.out.println("Начинаем!\nЧИСЛО СОЗДАНО УДАЧИ!");
                 isNext = false;
-                guessNumber.startGame(player1, player2, scanner);
+                guessNumber.startGame(scanner);
                 scanner.nextLine();
             }
             System.out.println("Желаете продолжить игру? Ответы: yes/no!");
