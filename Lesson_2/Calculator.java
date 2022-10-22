@@ -2,19 +2,11 @@ class Calculator {
     //оператор (+, -, *, /, ^, %)
     private int a, b;
     private char mathOperation;
-    
-    public int getA() {
-        return a;
-    }
 
     public boolean setA(int a) {
         if (a < 1) return false;
         this.a = a;
         return true;
-    }
-
-    public int getB() {
-        return b;
     }
 
     public boolean setB(int b) {
@@ -43,10 +35,6 @@ class Calculator {
         if (!validateMathOperation(mathOperation)) return false;
         this.mathOperation = mathOperation;
         return true;
-    }
-
-    public char getMathOperation() {
-        return mathOperation;
     }
 
     public int calculate() {
