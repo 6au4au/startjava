@@ -16,17 +16,17 @@ class Calculator {
     }
 
     private boolean validateMathOperation(char mathOperation) {
-            switch (mathOperation) {
-                case '+':
-                case '-':
-                case '*':
-                case '/':
-                case '^':
-                case '%':
-                    return true;
+        switch (mathOperation) {
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+            case '^':
+            case '%':
+                return true;
                 default:
-                    return false;
-            }
+            return false;
+        }
     }    
 
     public boolean setMathOperation(char mathOperation) {
