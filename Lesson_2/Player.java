@@ -14,12 +14,11 @@ class Player {
         return number;
     }
 
-    public void setNumber(int number) {
-        if (number <= 0) {
-            System.out.println(name.toUpperCase() + " ERROR: Число не можеть быть меньше 1!");
-            number = 0;
-        } else {
-            this.number = number;
+    public boolean setNumber(int number) {
+        if (number <= 0 || number > 100) {
+            return false;
         }
+        this.number = number;
+        return true;
     }
 }

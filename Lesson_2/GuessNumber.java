@@ -13,20 +13,18 @@ class GuessNumber {
     // игровой процесс:
     public void startGame(Scanner scanner) {
         generateNumber();
-        int whoseMove = 1;
+        int whoseMove = 0;
         Player player;
         do {
             whoseMove++;
             player = (whoseMove % 2 != 0) ? player1 : player2;
             System.out.println(player.getName() + ": Введите число!");
-            if (scanner.hasNextInt()) {
-                player.setNumber(scanner.nextInt());
-            } else if (!scanner.hasNextInt() || player.getNumber() <= 0 || player.getNumber() > 100) {
-                System.out.println(player.getName() + " Поддерживаются только целые положительные числа 1 <-> 100");
-                //Чистим сканнер!
-                scanner.next();
-                whoseMove--;
+            if (scanner.hasNextInt() && validatePlayerNum(player, scanner.nextInt())) {
                 continue;
+            } else {
+                //Чистим сканнер!
+                whoseMove--;
+                System.out.println("Поддерживаются только целые положительные числа 1 <-> 100");
             }
         } while (checkSecretNum(player));
     }
@@ -35,11 +33,19 @@ class GuessNumber {
         secretNum = (int) (Math.random() * ((100 - 1) + 1));
     }
 
+    private static boolean validatePlayerNum(Player player, int num) {
+        if (!player.setNumber(num)) {
+            System.out.println("Поддерживаются только целые положительные числа 1 <-> 100");
+            return false;
+        }
+        return true;
+    }
+
     private boolean checkSecretNum(Player player) {
         if (player.getNumber() < secretNum) {
             System.out.println(player.getName() + ": ваше число меньше!");
         } else if (player.getNumber() > secretNum) {
-            System.out.println(player.getName() + ": ваше число меньше!");
+            System.out.println(player.getName() + ": ваше число больше!");
             //выигрыш!
         } else {
             System.out.println(": ВЫИГРАЛ И УГАДАЛ ВЕРНОЕ ЧИСЛО! = " + secretNum);
