@@ -1,8 +1,7 @@
 import java.util.Scanner;
 
 public class CalculatorTest {
-    //Чтобы уменьшить количество вызываемых методов из класса Calculator эта переменная отвечает за проверку
-    //цикла программы, если она отработает то пока мы не сделаем её false - мы будем считывать ввод.
+    private static int nextOperand = 0;
     private static boolean didItWork = false;
 
     public static void main(String[] args) {
@@ -15,13 +14,13 @@ public class CalculatorTest {
                 //обращаемся к static boolean и переключаем 
                 didItWork = true;
                 System.out.print("Введите первое число: ");
-                calculator.setA(calculatorTest.validateNumber(scanner));
+                enterNumber(scanner, calculator);
                 System.out.print("\nУкажите знак математической операции: (+, -, *, /, ^, %): ");
                 //очистка сканнера:
                 scanner.nextLine();
-                calculator.setMatOperation(calculatorTest.validateMatOperation(scanner));
+                enterMatOperation(scanner, calculator);
                 System.out.print("\nВведите второе число: ");
-                calculator.setB(calculatorTest.validateNumber(scanner));
+                enterNumber(scanner, calculator);
                 System.out.print("\nРезультат: ");
                 System.out.println(calculator.getA() + " " + calculator.getMatOperation() + " " + calculator.getB() + 
                         " = " + calculator.calculate());
@@ -45,38 +44,31 @@ public class CalculatorTest {
         }
     }
 
-    private int validateNumber(Scanner scanner) {
-        int result;
+    private static void enterNumber(Scanner scanner, Calculator calculator) {
+        int num = 0;
         while (true) {
-            if (!scanner.hasNextInt()) {
-                System.out.println("Недопустимый формат ввода, поддерживаются только целые положительные числа!");
-                scanner.next();
-                continue;
+            if (scanner.hasNextInt()) {
+                num = scanner.nextInt();
+                if (nextOperand == 0 && calculator.setA(num)) {
+                    nextOperand++;
+                    break;
+                } else if (nextOperand == 1 && calculator.setB(num)) {
+                    nextOperand--;
+                    break;
+                }
             }
-            result = scanner.nextInt();
-            if (result == 0) {
-                System.out.println("Операции с 0 бессмысленны!");
-                continue;
-            }
-            break;
+            System.out.println("Ошибка: поддерживаются только целые положительные числа!");
         }
-        return result;
     }
 
-    private char validateMatOperation(Scanner scanner) {
+    private static void enterMatOperation(Scanner scanner, Calculator calculator) {
+        char matOperation;
         while (true) {
-            char matOperation = scanner.nextLine().trim().charAt(0);
-            switch (matOperation) {
-                case '+':
-                case '-':
-                case '*':
-                case '/':
-                case '^':
-                case '%':
-                    return matOperation;
-                default:
-                    System.out.println("Поддерживаются только эти математические операции: (+, -, *, /, ^, %)");
+            matOperation = scanner.nextLine().trim().charAt(0);
+            if (calculator.setMatOperation(matOperation)) {
+                break;
             }
+            System.out.println("Поддерживаются только эти математические операции: (+, -, *, /, ^, %)");
         }
     }
 }

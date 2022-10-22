@@ -7,20 +7,42 @@ class Calculator {
         return a;
     }
 
-    public void setA(int a) {
+    public boolean setA(int a) {
+        if (a < 1) { return false; }
         this.a = a;
+        return true;
     }
 
     public int getB() {
         return b;
     }
 
-    public void setB(int b) {
+    public boolean setB(int b) {
+        if (a < 1) { return false; }
        this.b = b;
+       return true;
     }
 
-    public void setMatOperation(char matOperation) {
+    private boolean validateMatOperation(char matOperation) {
+        while (true) {
+            switch (matOperation) {
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                case '^':
+                case '%':
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    }    
+
+    public boolean setMatOperation(char matOperation) {
+        if (!validateMatOperation(matOperation)) { return false; }
         this.matOperation = matOperation;
+        return true;
     }
 
     public char getMatOperation() {
