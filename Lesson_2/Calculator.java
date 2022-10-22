@@ -1,14 +1,14 @@
 class Calculator {
     //оператор (+, -, *, /, ^, %)
     private int a, b;
-    private char matOperation;
+    private char mathOperation;
     
     public int getA() {
         return a;
     }
 
     public boolean setA(int a) {
-        if (a < 1) { return false; }
+        if (a < 1) return false;
         this.a = a;
         return true;
     }
@@ -18,14 +18,14 @@ class Calculator {
     }
 
     public boolean setB(int b) {
-        if (a < 1) { return false; }
+        if (a < 1) return false;
        this.b = b;
        return true;
     }
 
-    private boolean validateMatOperation(char matOperation) {
+    private boolean validateMathOperation(char mathOperation) {
         while (true) {
-            switch (matOperation) {
+            switch (mathOperation) {
                 case '+':
                 case '-':
                 case '*':
@@ -39,18 +39,18 @@ class Calculator {
         }
     }    
 
-    public boolean setMatOperation(char matOperation) {
-        if (!validateMatOperation(matOperation)) { return false; }
-        this.matOperation = matOperation;
+    public boolean setMathOperation(char mathOperation) {
+        if (!validateMathOperation(mathOperation)) return false;
+        this.mathOperation = mathOperation;
         return true;
     }
 
-    public char getMatOperation() {
-        return matOperation;
+    public char getMathOperation() {
+        return mathOperation;
     }
 
     public int calculate() {
-        switch (matOperation) {
+        switch (mathOperation) {
             case '+':
                 return a + b;
             case '-':
