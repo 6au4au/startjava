@@ -16,7 +16,6 @@ class Calculator {
     }
 
     private boolean validateMathOperation(char mathOperation) {
-        while (true) {
             switch (mathOperation) {
                 case '+':
                 case '-':
@@ -28,7 +27,6 @@ class Calculator {
                 default:
                     return false;
             }
-        }
     }    
 
     public boolean setMathOperation(char mathOperation) {
