@@ -1,18 +1,35 @@
 class Calculator {
+
     //оператор (+, -, *, /, ^, %)
     private int a, b;
     private char mathOperation;
 
+    //ограничим возможность создания более одного калькулятора.
+    private static boolean instance;
+
+    public Calculator() {
+        if (instance) {
+            System.out.println("ERR: src/lesson_2/calculatorTest | Вы не можете создать более одного объекта");
+            System.exit(0);
+        }
+        
+        instance = true;
+    }
+
     public boolean setA(int a) {
-        if (a < 1) return false;
+        if (a < 1)
+            return false;
+
         this.a = a;
         return true;
     }
 
     public boolean setB(int b) {
-        if (a < 1) return false;
-       this.b = b;
-       return true;
+        if (a < 1)
+            return false;
+
+        this.b = b;
+        return true;
     }
 
     private boolean validateMathOperation(char mathOperation) {
@@ -30,7 +47,9 @@ class Calculator {
     }    
 
     public boolean setMathOperation(char mathOperation) {
-        if (!validateMathOperation(mathOperation)) return false;
+        if (!validateMathOperation(mathOperation))
+            return false;
+
         this.mathOperation = mathOperation;
         return true;
     }
