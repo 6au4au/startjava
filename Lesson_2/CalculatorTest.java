@@ -10,12 +10,12 @@ public class CalculatorTest {
         Scanner scanner = new Scanner(System.in);
 
         do {
-                //обращаемся к static boolean и переключаем 
-                didItWork = true;
-                System.out.println("Result: " + enterNumber(scanner, calculator) + " "
-                        + enterMathOperation(scanner, calculator) + " " + enterNumber(scanner, calculator)
-                        + " = " + calculator.calculate());
-                scanner.nextLine();
+            //обращаемся к static boolean и переключаем 
+            didItWork = true;
+            System.out.println("Result: " + enterNumber(scanner, calculator) + " "
+                    + enterMathOperation(scanner, calculator) + " " + enterNumber(scanner, calculator)
+                    + " = " + calculator.calculate());
+            scanner.nextLine();
             System.out.println("Желаете продолжить? YES / NO");
         } while (calculatorTest.switchOff(scanner.nextLine()));
         System.out.println("Выключение.");
