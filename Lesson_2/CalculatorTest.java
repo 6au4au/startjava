@@ -52,10 +52,9 @@ public class CalculatorTest {
             } else if (nextOperand == 1 && calculator.setB(num)) {
                 nextOperand--;
                 break;
-            } else {
-                System.out.println("Ошибка: поддерживаются только целые положительные числа!");
-                scanner.nextLine();
             }
+            System.out.println("Ошибка: поддерживаются только целые положительные числа!");
+            scanner.nextLine();
         }
         return num;
     }

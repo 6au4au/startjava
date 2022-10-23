@@ -12,12 +12,12 @@ class Calculator {
             System.out.println("ERR: src/lesson_2/calculatorTest | Вы не можете создать более одного объекта");
             System.exit(0);
         }
-        
+
         instance = true;
     }
 
     public boolean setA(int a) {
-        if (a < 1)
+        if (a <= 0)
             return false;
 
         this.a = a;
@@ -25,7 +25,7 @@ class Calculator {
     }
 
     public boolean setB(int b) {
-        if (a < 1)
+        if (a <= 0)
             return false;
 
         this.b = b;
