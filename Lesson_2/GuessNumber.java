@@ -15,11 +15,11 @@ class GuessNumber {
         generateSecretNum();
 
         //переменная которая определяет какой игрок ходит по остатку от деления.
-        int firstMove = 0;
+        int whoseMove = 0;
         Player player;
         do {
-            firstMove++;
-            player = (firstMove % 2 != 0) ? player1 : player2;
+            whoseMove++;
+            player = (whoseMove % 2 != 0) ? player1 : player2;
 
             System.out.println(player.getName() + ": Введите число!");
 
@@ -31,7 +31,7 @@ class GuessNumber {
             }
 
             //если введено не число, а символ, нужно очистить строку и обнулить ход, отобразить ошибку:
-            firstMove--;
+            whoseMove--;
             System.out.println("Поддерживаются только целые положительные числа 1 <-> 100");
             scanner.nextLine();
         } while (checkSecretNum(player));
