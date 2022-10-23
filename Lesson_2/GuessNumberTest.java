@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class GuessNumberTest {
-    private static boolean isNext = true;
+    private static String answer = "yes";
 
     public static void main(String[] args) {
         GuessNumberTest guessNumberTest = new GuessNumberTest();
@@ -9,34 +9,37 @@ public class GuessNumberTest {
         System.out.print("Игрок номер 1: ");
         Scanner scanner = new Scanner(System.in);
         Player player1 = new Player(scanner.nextLine());
-        System.out.println();
-        System.out.print("Игрок номер 2: ");
+        System.out.print("\nИгрок номер 2: ");
         Player player2 = new Player(scanner.nextLine());
         System.out.println();
         GuessNumber guessNumber = new GuessNumber(player1, player2);
+
         do {
-            if (isNext) {
+            if (answer.equals("yes")) {
                 System.out.println("Начинаем!\nЧИСЛО СОЗДАНО УДАЧИ!");
-                isNext = false;
                 guessNumber.startGame(scanner);
                 scanner.nextLine();
+            } else {
+
+                //Если цикл отработал, а ответ != YES.
+                System.out.println("Ошибка: допустимые варианты ответов: YES/NO");
             }
+
             System.out.println("Желаете продолжить игру? Ответы: yes/no!");
-        } while (guessNumberTest.wantMore(scanner.nextLine()));
+        } while (guessNumberTest.isNext(scanner.nextLine()));
         System.out.println("Завершение!");
     }
 
-    private boolean wantMore(String answer) {
-        switch (answer.trim().toLowerCase()) {
-            case "yes":
-                isNext = true;
-                return true;
-            case "no":
-                isNext = false;
-                return false;
-            default:
-                System.out.println("Допустимые варианты ответов: YES/NO");
-                return true; 
+    private boolean isNext(String answer) {
+        if (answer.equalsIgnoreCase("no")) 
+            return false;
+
+        if (answer.equalsIgnoreCase("yes")) {
+            this.answer = answer.trim().toLowerCase();
+            return true;
         }
+
+        answer = "WRONG ANSWER!";
+        return true;
     }
 }
