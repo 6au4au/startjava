@@ -11,37 +11,38 @@ class GuessNumber {
     }
 
     // игровой процесс:
-    public void startGame(Scanner scanner) {
+    public void start(Scanner scanner) {
         generateSecretNum();
+        System.out.println("Генерация...\nЧИСЛО СОЗДАНО! УДАЧИ!");
+        
+        //кладём сюда первого игрока, в цикле будем переключать.
+        Player activePlayer = player1;
+        while (!checkWinnings(activePlayer)) {
+            System.out.println("\n" + activePlayer.getName() + ": Введите число!");
 
-        //переменная которая определяет какой игрок ходит по остатку от деления.
-        int whoseMove = 0;
-        Player player;
-        do {
-            whoseMove++;
-            player = (whoseMove % 2 != 0) ? player1 : player2;
+            if (scanner.hasNextInt() && inputNumber(activePlayer, scanner.nextInt())) {
 
-            System.out.println(player.getName() + ": Введите число!");
-
-            if (scanner.hasNextInt() && validatePlayerNum(player, scanner.nextInt())) {
+                //если число не угадано переключаем игроков (если оно угадано и мы переключим игроков, то -
+                // - в начале цикла у нас будет новый player и мы не проверим выигрыш старого!
+                if(!compareIntroducedNumber(activePlayer))
+                    activePlayer = (activePlayer == player1) ? player2 : player1;
 
                 //отловил баг, тут нужна очистка сканнера:
                 scanner.nextLine();
                 continue;
             }
 
-            //если введено не число, а символ, нужно очистить строку и обнулить ход, отобразить ошибку:
-            whoseMove--;
+            //если введено не число или число не входит в диапазон!
             System.out.println("Поддерживаются только целые положительные числа 1 <-> 100");
-            scanner.nextLine();
-        } while (checkSecretNum(player));
+            scanner.nextLine(); 
+        }
     }
 
     private void generateSecretNum() {
         secretNum = (int) (Math.random() * ((100 - 1) + 1));
     }
 
-    private static boolean validatePlayerNum(Player player, int num) {
+    private static boolean inputNumber(Player player, int num) {
         if (!player.setNumber(num)) {
             return false;
         }
@@ -49,20 +50,29 @@ class GuessNumber {
         return true;
     }
 
-    private boolean checkSecretNum(Player player) {
-        if (player.getNumber() == secretNum) {
-            System.out.println(": ВЫИГРАЛ И УГАДАЛ ВЕРНОЕ ЧИСЛО! = " + secretNum);
-            return false;
-        } 
+    private boolean compareIntroducedNumber(Player player) {
 
-        //если число корректное то оно >0 и мы проверим его с сообщением, если не корректное, то:
-        //player.getNumber() останется == 0 и сообщение проигнорируется, наприм. при вводе символа, а не int.
+        //если числа предоставленные игроком меньше или больше:
         if (player.getNumber() < secretNum && player.getNumber() > 0) {
             System.out.println(player.getName() + ": ваше число меньше!");
-        } else if (player.getNumber() > secretNum && player.getNumber() > 0) {
-            System.out.println(player.getName() + ": ваше число больше!");
+            return false;
         }
 
+         if (player.getNumber() > secretNum && player.getNumber() > 0) {
+            System.out.println(player.getName() + ": ваше число больше!");
+            return false;
+        }
+
+        //если число угадано:
         return true;
+    }
+
+    private boolean checkWinnings(Player player) {
+        if (player.getNumber() == secretNum) {
+            System.out.println(player.getName() + ": ВЫИГРАЛ  УГАДАВ ВЕРНОЕ ЧИСЛО = " + secretNum);
+            return true;
+        } 
+
+        return false;
     }
 }

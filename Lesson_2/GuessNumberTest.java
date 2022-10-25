@@ -12,25 +12,26 @@ public class GuessNumberTest {
         System.out.print("\nИгрок номер 2: ");
         Player player2 = new Player(scanner.nextLine());
         System.out.println();
-        GuessNumber guessNumber = new GuessNumber(player1, player2);
+        GuessNumber game = new GuessNumber(player1, player2);
 
         do {
             if (answer.equals("yes")) {
-                System.out.println("Начинаем!\nЧИСЛО СОЗДАНО УДАЧИ!");
-                guessNumber.startGame(scanner);
-                scanner.nextLine();
-            } else {
+                answer = "no answer";
+                game.start(scanner);
+                continue;
+            } 
 
-                //Если цикл отработал, а ответ != YES.
-                System.out.println("Ошибка: допустимые варианты ответов: YES/NO");
-            }
-
-            System.out.println("Желаете продолжить игру? Ответы: yes/no!");
-        } while (guessNumberTest.isNext(scanner.nextLine()));
+            //Если цикл отработал, а ответ != YES.
+            System.out.println("Ошибка: допустимые варианты ответов: YES/NO");
+        } while (guessNumberTest.isNext(scanner));
         System.out.println("Завершение!");
     }
 
-    private boolean isNext(String answer) {
+    private boolean isNext(Scanner scanner) {
+        System.out.println("Желаете продолжить игру? Ответы: yes/no!");
+
+        answer = scanner.nextLine();
+
         if (answer.equalsIgnoreCase("no")) 
             return false;
 
@@ -39,7 +40,7 @@ public class GuessNumberTest {
             return true;
         }
 
-        answer = "WRONG ANSWER!";
+        answer = "no answer";
         return true;
     }
 }
