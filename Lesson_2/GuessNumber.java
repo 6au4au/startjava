@@ -17,17 +17,17 @@ class GuessNumber {
         
         //кладём сюда первого игрока, в цикле будем переключать.
         Player activePlayer = player1;
-        while (!checkWinnings(activePlayer)) {
+        while (true) {
             System.out.println("\n" + activePlayer.getName() + ": Введите число!");
 
-            if (scanner.hasNextInt() && inputNumber(activePlayer, scanner.nextInt())) {
+            if (scanner.hasNextInt() && inputNumber(activePlayer, scanner)) {
 
-                //если число не угадано переключаем игроков (если оно угадано и мы переключим игроков, то -
-                // - в начале цикла у нас будет новый player и мы не проверим выигрыш старого!
-                if(!compareIntroducedNumber(activePlayer))
-                    activePlayer = (activePlayer == player1) ? player2 : player1;
+                //если метод вернул true игрок выиграл:
+                if(compareIntroducedNumber(activePlayer))
+                    break;
 
-                //отловил баг, тут нужна очистка сканнера:
+                //если число не угадано, меняем игроков местами:
+                activePlayer = (activePlayer == player1) ? player2 : player1;
                 scanner.nextLine();
                 continue;
             }
@@ -36,13 +36,15 @@ class GuessNumber {
             System.out.println("Поддерживаются только целые положительные числа 1 <-> 100");
             scanner.nextLine(); 
         }
+        scanner.nextLine();
     }
 
     private void generateSecretNum() {
-        secretNum = (int) (Math.random() * ((100 - 1) + 1));
+        secretNum = (int) (Math.random() * 100) + 1;
     }
 
-    private static boolean inputNumber(Player player, int num) {
+    private static boolean inputNumber(Player player, Scanner scanner) {
+        int num = scanner.nextInt();
         if (!player.setNumber(num)) {
             return false;
         }
@@ -58,21 +60,14 @@ class GuessNumber {
             return false;
         }
 
-         if (player.getNumber() > secretNum && player.getNumber() > 0) {
+        if (player.getNumber() > secretNum && player.getNumber() > 0) {
             System.out.println(player.getName() + ": ваше число больше!");
             return false;
         }
 
-        //если число угадано:
+        //Если число !< || !> то оно == secretNum:
+        System.out.println(player.getName() + ": ВЫИГРАЛ УГАДАВ ВЕРНОЕ ЧИСЛО = " + secretNum);
         return true;
     }
 
-    private boolean checkWinnings(Player player) {
-        if (player.getNumber() == secretNum) {
-            System.out.println(player.getName() + ": ВЫИГРАЛ  УГАДАВ ВЕРНОЕ ЧИСЛО = " + secretNum);
-            return true;
-        } 
-
-        return false;
-    }
 }
