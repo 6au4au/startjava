@@ -18,29 +18,18 @@ public class GuessNumberTest {
             if (answer.equals("yes")) {
                 answer = "no answer";
                 game.start(scanner);
-                continue;
-            } 
+            }
 
-            //Если цикл отработал, а ответ != YES.
-            System.out.println("Ошибка: допустимые варианты ответов: YES/NO");
-        } while (guessNumberTest.isNext(scanner));
+            System.out.println("Желаете продолжить игру? Ответы: yes/no!");
+            answer = scanner.nextLine();
+
+            if (!answer.equalsIgnoreCase("no") && !answer.equalsIgnoreCase("yes")) {
+                answer = "no answer";
+                System.out.println("Ошибка: допустимые варианты ответов: YES/NO");
+            }
+            
+        } while (!answer.equalsIgnoreCase("no"));
+        
         System.out.println("Завершение!");
-    }
-
-    private boolean isNext(Scanner scanner) {
-        System.out.println("Желаете продолжить игру? Ответы: yes/no!");
-
-        answer = scanner.nextLine();
-
-        if (answer.equalsIgnoreCase("no")) 
-            return false;
-
-        if (answer.equalsIgnoreCase("yes")) {
-            this.answer = answer.trim().toLowerCase();
-            return true;
-        }
-
-        answer = "no answer";
-        return true;
     }
 }

@@ -23,7 +23,7 @@ class GuessNumber {
             if (scanner.hasNextInt() && inputNumber(activePlayer, scanner)) {
 
                 //если метод вернул true игрок выиграл:
-                if(compareIntroducedNumber(activePlayer))
+                if(compareNums(activePlayer))
                     break;
 
                 //если число не угадано, меняем игроков местами:
@@ -45,29 +45,19 @@ class GuessNumber {
 
     private static boolean inputNumber(Player player, Scanner scanner) {
         int num = scanner.nextInt();
-        if (!player.setNumber(num)) {
-            return false;
-        }
-
-        return true;
+        return (player.setNumber(num));
     }
 
-    private boolean compareIntroducedNumber(Player player) {
-
-        //если числа предоставленные игроком меньше или больше:
-        if (player.getNumber() < secretNum && player.getNumber() > 0) {
-            System.out.println(player.getName() + ": ваше число меньше!");
-            return false;
-        }
-
-        if (player.getNumber() > secretNum && player.getNumber() > 0) {
-            System.out.println(player.getName() + ": ваше число больше!");
+    private boolean compareNums(Player player) {
+        //если число не угадано, определяем больше оно либо же меньше :
+        if (player.getNumber() != secretNum) {
+            String compare = (player.getNumber() < secretNum) ? "Ваше число меньше!" : "Ваше число больше!";
+            System.out.println(compare);
             return false;
         }
 
         //Если число !< || !> то оно == secretNum:
-        System.out.println(player.getName() + ": ВЫИГРАЛ УГАДАВ ВЕРНОЕ ЧИСЛО = " + secretNum);
+        System.out.println("\n" + player.getName() + ": ВЫИГРАЛ УГАДАВ ВЕРНОЕ ЧИСЛО = " + secretNum);
         return true;
     }
-
 }
