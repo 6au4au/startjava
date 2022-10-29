@@ -8,11 +8,15 @@ public class Bill {
         this.amount = amount;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public boolean setAmount(float amount) {
+        if (amount <= 0)
+            return false;
+
         this.amount = amount;
+        return true;
     }
 }

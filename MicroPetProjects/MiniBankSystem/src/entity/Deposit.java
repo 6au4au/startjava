@@ -1,10 +1,11 @@
 package entity;
 
-//Платеж!
-public class Payment extends MonetaryTransaction {
+//Увеличение суммы счета:
+public class Deposit extends MonetaryTransaction {
     private Bill bill;
 
-    public Payment(Bill bill) {
+
+    public Deposit(Bill bill) {
         this.bill = bill;
     }
 
@@ -20,14 +21,15 @@ public class Payment extends MonetaryTransaction {
         return true;
     }
 
-
     @Override
     public boolean conductTransaction(Account current, Bill bill) {
-        if((!setBill(current.getBill()) || bill == null) || bill.getAmount() - bill.getAmount() < 0)
+        if (!setBill(current.getBill()) || bill == null)
             return false;
 
-        if(this.bill.setAmount(this.bill.getAmount() - bill.getAmount()) && current.setBill(bill))
+        if (this.bill.setAmount(this.bill.getAmount() + bill.getAmount()) && current.setBill(this.bill)) {
+            current.setBill(this.bill);
             return true;
+        }
 
         return false;
     }

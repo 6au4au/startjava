@@ -22,7 +22,11 @@ public class Account {
         return bill;
     }
 
-    public void setBill(Bill bill) {
+    public boolean setBill(Bill bill) {
+        if (bill == null)
+            return false;
+
         this.bill = bill;
+        return true;
     }
 }
