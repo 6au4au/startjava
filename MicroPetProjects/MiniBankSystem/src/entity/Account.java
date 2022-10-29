@@ -4,6 +4,7 @@ package entity;
 public class Account {
     private Person accountHolder;
     private Bill bill;
+    private long iban;
 
     public Account(Person accountHolder, Bill bill) {
         this.accountHolder = accountHolder;
