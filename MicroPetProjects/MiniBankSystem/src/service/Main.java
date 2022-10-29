@@ -26,6 +26,10 @@ public class Main {
         System.out.println();
         input.close();
 
+        Bill bug = null;
+        if(!account1.setBill(bug))
+            System.out.println("NPE SOSI CHUY");
+
         DepositService deposit = new DepositService();
         System.out.println("Состояние счета: " + account1.getBill().getAmount());
         System.out.println("Сумма пополнения: " + sum);
