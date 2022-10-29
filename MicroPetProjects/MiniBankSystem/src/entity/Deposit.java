@@ -5,8 +5,7 @@ public class Deposit extends MonetaryTransaction {
     private Bill bill;
 
 
-    public Deposit(Bill bill) {
-        this.bill = bill;
+    public Deposit() {
     }
 
     public Bill getBill() {

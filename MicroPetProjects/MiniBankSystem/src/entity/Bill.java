@@ -5,8 +5,11 @@ public class Bill {
     private float amount;
 
     public Bill(float amount) {
-        this.amount = amount;
+        if (amount > 0)
+            this.amount = amount;
     }
+
+    public Bill() {}
 
     public float getAmount() {
         return amount;
