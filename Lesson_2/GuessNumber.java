@@ -23,20 +23,17 @@ class GuessNumber {
             if (scanner.hasNextInt() && inputNumber(activePlayer, scanner)) {
 
                 //если метод вернул true игрок выиграл:
-                if(compareNums(activePlayer))
-                    break;
+                if(compareNums(activePlayer)) break;
 
                 //если число не угадано, меняем игроков местами:
                 activePlayer = (activePlayer == player1) ? player2 : player1;
-                scanner.nextLine();
                 continue;
             }
 
             //если введено не число или число не входит в диапазон!
             System.out.println("Поддерживаются только целые положительные числа 1 <-> 100");
-            scanner.nextLine(); 
+            scanner.nextLine();
         }
-        scanner.nextLine();
     }
 
     private void generateSecretNum() {
@@ -56,7 +53,6 @@ class GuessNumber {
             return false;
         }
 
-        //Если число !< || !> то оно == secretNum:
         System.out.println("\n" + player.getName() + ": ВЫИГРАЛ УГАДАВ ВЕРНОЕ ЧИСЛО = " + secretNum);
         return true;
     }
