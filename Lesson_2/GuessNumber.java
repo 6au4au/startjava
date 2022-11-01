@@ -42,14 +42,14 @@ class GuessNumber {
 
     private static boolean inputNumber(Player player, Scanner scanner) {
         int num = scanner.nextInt();
-        return (player.setNumber(num));
+        return player.setNumber(num);
     }
 
     private boolean compareNums(Player player) {
         //если число не угадано, определяем больше оно либо же меньше :
         if (player.getNumber() != secretNum) {
-            String compare = (player.getNumber() < secretNum) ? "Ваше число меньше!" : "Ваше число больше!";
-            System.out.println(compare);
+            String compare = (player.getNumber() < secretNum) ? "меньше!" : "больше!";
+            System.out.println("Ваше число - " + compare + "!");
             return false;
         }
 
